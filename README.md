@@ -1,4 +1,5 @@
-### Project Three
+### Project Four
 
-* `npm install` - Install dependencies
-* `npm run dev` - Run the app in development mode
+* `pipenv install` - Install dependencies
+* `pipenv shell` - Enter V
+* `python3 manage.py runserver` - Run the app in development mode
