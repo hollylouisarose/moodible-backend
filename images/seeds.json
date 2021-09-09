@@ -1,0 +1,158 @@
+[
+{
+  "model": "images.mood",
+  "pk": 1,
+  "fields": {
+    "choice": "Adventurous"
+  }
+},
+{
+  "model": "images.mood",
+  "pk": 2,
+  "fields": {
+    "choice": "Playful"
+  }
+},
+{
+  "model": "images.mood",
+  "pk": 3,
+  "fields": {
+    "choice": "Calm"
+  }
+},
+{
+  "model": "images.image",
+  "pk": 1,
+  "fields": {
+    "source": "https://images.unsplash.com/photo-1513517860393-d9bf0651bed8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=934&q=80",
+    "description": "A cabin in the woods",
+    "mood": 1
+  }
+},
+{
+  "model": "images.image",
+  "pk": 2,
+  "fields": {
+    "source": "https://images.unsplash.com/photo-1510861204575-106db3eb041b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=934&q=80",
+    "description": "Snowboarding",
+    "mood": 1
+  }
+},
+{
+  "model": "images.image",
+  "pk": 3,
+  "fields": {
+    "source": "https://images.unsplash.com/photo-1507034589631-9433cc6bc453?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8M3xsT2xWaUk1bENKTXx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
+    "description": "Rock climbing",
+    "mood": 1
+  }
+},
+{
+  "model": "images.image",
+  "pk": 4,
+  "fields": {
+    "source": "https://images.unsplash.com/photo-1484804959297-65e7c19d7c9f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1428&q=80",
+    "description": "Paddle boarding",
+    "mood": 1
+  }
+},
+{
+  "model": "images.image",
+  "pk": 5,
+  "fields": {
+    "source": "https://images.unsplash.com/photo-1603098091396-98fc15ec5ce3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1502&q=80",
+    "description": "Parachuting",
+    "mood": 1
+  }
+},
+{
+  "model": "images.image",
+  "pk": 6,
+  "fields": {
+    "source": "https://images.unsplash.com/photo-1560743641-3914f2c45636?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=933&q=80",
+    "description": "Happy dogs",
+    "mood": 2
+  }
+},
+{
+  "model": "images.image",
+  "pk": 7,
+  "fields": {
+    "source": "https://images.unsplash.com/photo-1607062294253-93e9ce166448?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80",
+    "description": "Smiling with flowers",
+    "mood": 2
+  }
+},
+{
+  "model": "images.image",
+  "pk": 8,
+  "fields": {
+    "source": "https://images.unsplash.com/photo-1476611317561-60117649dd94?ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTB8bE9sVmlJNWxDSk18fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "description": "Girl blowing bubbles",
+    "mood": 2
+  }
+},
+{
+  "model": "images.image",
+  "pk": 9,
+  "fields": {
+    "source": "https://images.unsplash.com/photo-1627721762612-8359efa96ef8?ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTJ8bE9sVmlJNWxDSk18fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "description": "Girl dancing on the beach",
+    "mood": 2
+  }
+},
+{
+  "model": "images.image",
+  "pk": 10,
+  "fields": {
+    "source": "https://images.unsplash.com/photo-1509909756405-be0199881695?ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTF8bE9sVmlJNWxDSk18fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "description": "Balloons",
+    "mood": 2
+  }
+},
+{
+  "model": "images.image",
+  "pk": 11,
+  "fields": {
+    "source": "https://images.unsplash.com/photo-1592677298363-c2586b8cafde?ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTN8bE9sVmlJNWxDSk18fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "description": "Boat on a still lake",
+    "mood": 3
+  }
+},
+{
+  "model": "images.image",
+  "pk": 12,
+  "fields": {
+    "source": "https://images.unsplash.com/photo-1516676839530-135a545cce02?ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTV8bE9sVmlJNWxDSk18fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "description": "Wheatfield",
+    "mood": 3
+  }
+},
+{
+  "model": "images.image",
+  "pk": 13,
+  "fields": {
+    "source": "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTZ8bE9sVmlJNWxDSk18fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "description": "A tree in a lake",
+    "mood": 3
+  }
+},
+{
+  "model": "images.image",
+  "pk": 14,
+  "fields": {
+    "source": "https://images.unsplash.com/photo-1503891617560-5b8c2e28cbf6?ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTR8bE9sVmlJNWxDSk18fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+    "description": "A ripple on water",
+    "mood": 3
+  }
+},
+{
+  "model": "images.image",
+  "pk": 15,
+  "fields": {
+    "source": "https://images.unsplash.com/photo-1566044366987-6de6ca566441?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+    "description": "Sunny woodland",
+    "mood": 3
+  }
+}
+]
