@@ -1,14 +1,17 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from rest_framework.generics import (
+  ListCreateAPIView, RetrieveUpdateDestroyAPIView
+)
+
 from images.serializers import ImageSerializer
 from .models import Image
 
+class ImageListView(ListCreateAPIView):
+    '''List view for /images INDEX CREATE'''
+    queryset = Image.objects.all()
+    serializer_class= ImageSerializer
 
 
-
-class ImageListView(APIView):
-    def get(self, _request):
-        images = Image.objects.all()
-        serializer = ImageSerializer(images, many=True)
-
-        return Response(serializer.data)
+class ImageDetailView(RetrieveUpdateDestroyAPIView):
+    '''Detail view from /images/id SHOW UPDATE DELETE'''
+    queryset = Image.objects.all()
+    serializer_class = ImageSerializer
