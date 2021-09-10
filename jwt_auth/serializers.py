@@ -1,8 +1,9 @@
-from rest_framework import serializers
-from django.contrib.auth import get_user_model
-# import django.contrib.auth.password_validation as validation
 from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
+from django.contrib.auth import get_user_model
+from rest_framework import serializers
+from images.serializers import NoteSerializer
+# import django.contrib.auth.password_validation as validation
 
 User = get_user_model()
 
@@ -24,10 +25,17 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         #     raise ValidationError({'password': err.messages})
 
         data['password'] = make_password(password)
-
+        print('the data', data)
         return data
 
 
     class Meta:
         model = User
         fields ='__all__'
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    notes_made = NoteSerializer(many=True)
+
+    class Meta:
+        model = User
+        fields =('username', 'email', 'profile_image', 'notes_made')

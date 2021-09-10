@@ -2,16 +2,17 @@ from datetime import datetime, timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
 
-from .serializers import UserRegisterSerializer
+from .serializers import UserProfileSerializer, UserRegisterSerializer
 User = get_user_model()
 
 class RegisterView(APIView):
-
+    '''Register User View CREATE'''
     def post(self, request):
         user_to_create = UserRegisterSerializer(data=request.data)
         if user_to_create.is_valid():
@@ -23,13 +24,13 @@ class RegisterView(APIView):
         return Response(user_to_create.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
 class LoginView(APIView):
-
+    ''' Login User View POST'''
     def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
 
         try:
-            user_to_login = User.objects.get(username=username)
+            user_to_login = User.objects.get(username=username)           
         except User.DoesNotExist:
             raise PermissionDenied(detail='Unauthorized')
 
@@ -43,7 +44,18 @@ class LoginView(APIView):
             algorithm='HS256'
         )
 
+        print('token check🍓', token)
+
         return Response({
             'token': token,
             'message': f'Hi there {username}'
         }, status=status.HTTP_200_OK)
+
+class ProfileView(APIView):
+    '''User Profile View GET'''
+    permission_classes = (IsAuthenticated, )
+
+    def get(self, request):
+        serialized_user = UserProfileSerializer(request.user)
+        print('the data', serialized_user.data)
+        return Response(serialized_user.data, status=status.HTTP_200_OK)
