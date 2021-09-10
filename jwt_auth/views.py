@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import status
+from rest_framework import serializers, status
 from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
@@ -59,3 +59,9 @@ class ProfileView(APIView):
         serialized_user = UserProfileSerializer(request.user)
         print('the data', serialized_user.data)
         return Response(serialized_user.data, status=status.HTTP_200_OK)
+
+# todo: add ability to edit user profile
+    # def put(self, request):
+    #     user_to_edit = UserProfileSerializer(request.user)
+    #     print('the data', user_to_edit.data)
+    #     return Response({'hello': 'world'})

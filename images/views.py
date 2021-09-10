@@ -1,3 +1,4 @@
+
 from rest_framework import status
 from rest_framework.generics import (
   ListCreateAPIView, RetrieveUpdateDestroyAPIView
@@ -5,6 +6,7 @@ from rest_framework.generics import (
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import NotFound
 
 from images.serializers import ImageSerializer, NoteSerializer
 from .models import Image, Note
@@ -21,9 +23,7 @@ class ImageDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = ImageSerializer
 
 class NoteCreateView(ListCreateAPIView):
-
     permission_classes = (IsAuthenticated, )
-
     '''List view for <int:user_pk>/notes/ CREATE note'''
     def post(self, request, user_pk):
         request.data['owner'] = user_pk
@@ -34,8 +34,28 @@ class NoteCreateView(ListCreateAPIView):
               created_note.data,status=status.HTTP_201_CREATED)
         return Response(created_note.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-class NoteDetailView(APIView):
 
+class NoteDetailView(APIView):
+    permission_classes = (IsAuthenticated, )
+    '''Delete view for <int:user_pk>/notes/<int:note_pk>/ DELETE note'''
     def delete(self, _request, **kwargs):
-        print(kwargs)
-        return Response({'hello': 'world'})
+        note_pk= kwargs['note_pk']
+        try:
+            note_to_delete = Note.objects.get(pk=note_pk)
+            note_to_delete.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Note.DoesNotExist:
+            raise NotFound()
+
+    '''Update view for <int:user_pk>/notes/<int:note_pk>/ DELETE note'''
+    def put(self, request, **kwargs):
+        note_pk= kwargs['note_pk']
+        request.data['owner'] = request.user.id
+        note_to_edit = Note.objects.get(pk=note_pk)
+        edited_note = NoteSerializer(note_to_edit, data=request.data)
+        if edited_note.is_valid():
+            edited_note.save()
+            return Response(
+            edited_note.data, status=status.HTTP_202_ACCEPTED
+          )
+        return Response(edited_note.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
