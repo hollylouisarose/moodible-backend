@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
 
-from .serializers import UserProfileSerializer, UserRegisterSerializer
+from .serializers import UserProfileSerializer, UserRegisterSerializer, UserProfileEditSerializer
 User = get_user_model()
 
 class RegisterView(APIView):
@@ -44,8 +44,6 @@ class LoginView(APIView):
             algorithm='HS256'
         )
 
-        print('token check🍓', token)
-
         return Response({
             'token': token,
             'message': f'Hi there {username}'
@@ -60,8 +58,14 @@ class ProfileView(APIView):
         print('the data', serialized_user.data)
         return Response(serialized_user.data, status=status.HTTP_200_OK)
 
-# todo: add ability to edit user profile
-    # def put(self, request):
-    #     user_to_edit = UserProfileSerializer(request.user)
-    #     print('the data', user_to_edit.data)
-    #     return Response({'hello': 'world'})
+    # todo: add ability to edit user profile
+    def put(self, request):
+        user_to_edit = UserProfileEditSerializer(request.user)
+        print('the user', user_to_edit.data)
+        edited_profile = UserProfileEditSerializer(user_to_edit, data=request.data)
+        if edited_profile.is_valid():
+            edited_profile.save()
+            return Response(
+              edited_profile.data, status=status.HTTP_202_ACCEPTED
+            )
+        return Response(edited_profile.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)

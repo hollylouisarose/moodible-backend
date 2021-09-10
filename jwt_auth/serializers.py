@@ -2,6 +2,7 @@ from django.contrib.auth.hashers import make_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
+from images.serializers import ImageSerializer
 from images.serializers import NoteSerializer
 # import django.contrib.auth.password_validation as validation
 
@@ -35,7 +36,15 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
 class UserProfileSerializer(serializers.ModelSerializer):
     notes_made = NoteSerializer(many=True)
+    liked_images = ImageSerializer(many=True)
 
     class Meta:
         model = User
-        fields =('username', 'email', 'profile_image', 'notes_made')
+        fields =('username', 'email', 'profile_image', 'liked_images', 'notes_made')
+
+
+class UserProfileEditSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields =('pk','username', 'email', 'profile_image')

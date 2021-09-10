@@ -15,6 +15,11 @@ class Image(models.Model):
     source = models.CharField(max_length=200)
     description = models.CharField(max_length=100)
     mood = models.ForeignKey(Mood, related_name='moods', on_delete=models.CASCADE)
+    liked_by = models.ManyToManyField(
+      'jwt_auth.User',
+      related_name='liked_images',
+      blank=True
+    )
 
     def __str__(self):
         return f'{self.description}'

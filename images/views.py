@@ -13,17 +13,21 @@ from .models import Image, Note
 
 class ImageListView(ListCreateAPIView):
     '''List view for /images INDEX CREATE'''
+
     queryset = Image.objects.all()
     serializer_class= ImageSerializer
 
 
 class ImageDetailView(RetrieveUpdateDestroyAPIView):
     '''Detail view from /images/id SHOW UPDATE DELETE'''
+
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
 
 class NoteCreateView(ListCreateAPIView):
+
     permission_classes = (IsAuthenticated, )
+
     '''List view for <int:user_pk>/notes/ CREATE note'''
     def post(self, request, user_pk):
         request.data['owner'] = user_pk
@@ -36,8 +40,11 @@ class NoteCreateView(ListCreateAPIView):
 
 
 class NoteDetailView(APIView):
+
     permission_classes = (IsAuthenticated, )
+
     '''Delete view for <int:user_pk>/notes/<int:note_pk>/ DELETE note'''
+
     def delete(self, _request, **kwargs):
         note_pk= kwargs['note_pk']
         try:
@@ -48,6 +55,7 @@ class NoteDetailView(APIView):
             raise NotFound()
 
     '''Update view for <int:user_pk>/notes/<int:note_pk>/ DELETE note'''
+
     def put(self, request, **kwargs):
         note_pk= kwargs['note_pk']
         request.data['owner'] = request.user.id
@@ -59,3 +67,23 @@ class NoteDetailView(APIView):
             edited_note.data, status=status.HTTP_202_ACCEPTED
           )
         return Response(edited_note.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+class ImageLikeView(APIView):
+    ''' Adds likes to images, removes if already liked'''
+
+    permission_classes = (IsAuthenticated, )
+
+    def post(self, request, image_pk):
+        try:
+            image_to_like = Image.objects.get(pk=image_pk)
+        except Image.DoesNotExist:
+            raise NotFound()
+
+        if request.user in image_to_like.liked_by.all():
+            image_to_like.liked_by.remove(request.user.id)
+        else:
+            image_to_like.liked_by.add(request.user.id)
+
+        serialized_image = ImageSerializer(image_to_like)
+
+        return Response(serialized_image.data, status=status.HTTP_202_ACCEPTED)
