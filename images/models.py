@@ -12,6 +12,11 @@ class Mood(models.Model):
         return f'{self.choice}'
 
 class Image(models.Model):
+    ORIENTATION_CHOICES = [
+      ('Portrait', 'Portrait'),
+      ('Landscape', 'Landscape'),
+    ]
+    orientation = models.CharField(max_length=20, choices=ORIENTATION_CHOICES)
     source = models.CharField(max_length=200)
     description = models.CharField(max_length=100)
     mood = models.ForeignKey(Mood, related_name='moods', on_delete=models.CASCADE)
