@@ -1,7 +1,7 @@
 
-from rest_framework import status
+from rest_framework import serializers, status
 from rest_framework.generics import (
-  ListCreateAPIView, RetrieveUpdateDestroyAPIView
+  ListCreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveAPIView
 )
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -40,10 +40,24 @@ class NoteCreateView(ListCreateAPIView):
               created_note.data,status=status.HTTP_201_CREATED)
         return Response(created_note.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-
 class NoteDetailView(APIView):
 
     permission_classes = (IsAuthenticated, )
+
+    def get(self, _request, **kwargs):
+        note_pk=kwargs['note_pk']
+        user_pk=kwargs['user_pk']
+        print('user id', user_pk)
+        try:
+            note = Note.objects.get(pk=note_pk)
+            print('the note', note)
+            serializer = NoteSerializer(note)
+            print('the user who made the note', serializer.data['owner'])
+            if user_pk != serializer.data['owner']:
+                return Response({'detail': 'not your note'}, status=status.HTTP_403_FORBIDDEN)
+            return Response(serializer.data)
+        except Note.DoesNotExist:
+            raise NotFound()
 
     '''Delete view for <int:user_pk>/notes/<int:note_pk>/ DELETE note'''
 
