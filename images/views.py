@@ -27,6 +27,8 @@ class ImageDetailView(RetrieveUpdateDestroyAPIView):
 class NoteCreateView(ListCreateAPIView):
 
     permission_classes = (IsAuthenticated, )
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializer
 
     '''List view for <int:user_pk>/notes/ CREATE note'''
     def post(self, request, user_pk):
