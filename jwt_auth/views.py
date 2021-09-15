@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
 
-from .serializers import UserSerializer, UserProfileSerializer, UserRegisterSerializer, UserProfileEditSerializer
+from .serializers import UserProfileSerializer, UserRegisterSerializer, UserProfileEditSerializer
 User = get_user_model()
 
 class RegisterView(APIView):
@@ -74,7 +74,6 @@ class ProfileDetailView(APIView):
         return Response(serialized_user.data, status=status.HTTP_200_OK)
 
     def put(self, request, pk):
-        # user_to_edit = UserProfileEditSerializer(request.user)
         user_to_edit = self.get_user(pk=pk)
         print('the user', user_to_edit)
         edited_profile = UserProfileEditSerializer(user_to_edit, data=request.data)
