@@ -1,14 +1,14 @@
 from datetime import datetime, timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.exceptions import PermissionDenied, NotFound
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import serializers, status
+from rest_framework import status
 from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
 
-from .serializers import UserProfileSerializer, UserRegisterSerializer, UserProfileEditSerializer
+from .serializers import UserSerializer, UserProfileSerializer, UserRegisterSerializer, UserProfileEditSerializer
 User = get_user_model()
 
 class RegisterView(APIView):
@@ -58,14 +58,28 @@ class ProfileView(APIView):
         print('the data', serialized_user.data)
         return Response(serialized_user.data, status=status.HTTP_200_OK)
 
-    # todo: add ability to edit user profile
-    def put(self, request):
-        user_to_edit = UserProfileEditSerializer(request.user)
-        print('the user', user_to_edit.data)
+class ProfileDetailView(APIView):
+
+    permission_classes = (IsAuthenticated, )
+
+    def get_user(self, pk):
+        try:
+            return User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise NotFound()
+
+    def get(self, _request, pk):
+        user = self.get_user(pk=pk)
+        serialized_user = UserProfileSerializer(user)
+        return Response(serialized_user.data, status=status.HTTP_200_OK)
+
+    def put(self, request, pk):
+        # user_to_edit = UserProfileEditSerializer(request.user)
+        user_to_edit = self.get_user(pk=pk)
+        print('the user', user_to_edit)
         edited_profile = UserProfileEditSerializer(user_to_edit, data=request.data)
         if edited_profile.is_valid():
             edited_profile.save()
-            return Response(
-              edited_profile.data, status=status.HTTP_202_ACCEPTED
-            )
+            return Response({'message': 'Accepted Edit'},
+            status=status.HTTP_202_ACCEPTED)
         return Response(edited_profile.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)

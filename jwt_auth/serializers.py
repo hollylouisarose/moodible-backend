@@ -34,7 +34,12 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         model = User
         fields ='__all__'
 
-class UserProfileSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= User
+        fields = '__all__'
+
+class UserProfileSerializer(UserSerializer):
     notes_made = NoteSerializer(many=True)
     liked_images = ImageSerializer(many=True)
 
@@ -42,9 +47,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = User
         fields =('username', 'email', 'profile_image', 'liked_images', 'notes_made')
 
-
-class UserProfileEditSerializer(serializers.ModelSerializer):
+class UserProfileEditSerializer(UserSerializer):
 
     class Meta:
         model = User
-        fields =('pk','username', 'email', 'profile_image')
+        fields =('username', 'email', 'profile_image')
