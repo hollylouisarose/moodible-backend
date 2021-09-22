@@ -3,4 +3,4 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     email = models.CharField(max_length=50, unique=True)
-    profile_image = models.CharField(max_length=300, default='https://i.imgur.com/44CkP8U.png')
+    profile_image = models.CharField(max_length=300)
