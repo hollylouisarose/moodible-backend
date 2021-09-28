@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "466e35dacf6548b2fd0517a31d65f7deef0bd2bbe7126d1a987c77d8c4105f20"
+            "sha256": "56e89918a4e1d81818426c6796ba2f01c570773955a64512c1bb1aea37b133ec"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -72,12 +72,19 @@
             "index": "pypi",
             "version": "==3.12.4"
         },
+        "djangorestframework-camel-case": {
+            "hashes": [
+                "sha256:9714d43fba5bb654057c29501649684d3d9f11a92319ae417fd4d65e80d1159d"
+            ],
+            "index": "pypi",
+            "version": "==1.2.0"
+        },
         "isort": {
             "hashes": [
                 "sha256:9c2ea1e62d871267b78307fe511c0838ba0da28698c5732d54e2790bf3ba9899",
                 "sha256:e17d6e2b81095c9db0a03a8025a957f334d6ea30b26f9ec70805411e5c7c81f2"
             ],
-            "markers": "python_version < '4.0' and python_full_version >= '3.6.1'",
+            "markers": "python_version < '4' and python_full_version >= '3.6.1'",
             "version": "==5.9.3"
         },
         "lazy-object-proxy": {
@@ -158,6 +165,14 @@
             "index": "pypi",
             "version": "==2.9.1"
         },
+        "pyjwt": {
+            "hashes": [
+                "sha256:934d73fbba91b0483d3857d1aff50e96b2a892384ee2c17417ed3203f173fca1",
+                "sha256:fba44e7898bbca160a2b2b501f492824fc8382485d3a6f11ba5d0c1937ce6130"
+            ],
+            "index": "pypi",
+            "version": "==2.1.0"
+        },
         "pylint": {
             "hashes": [
                 "sha256:0f358e221c45cbd4dad2a1e4b883e75d28acdcccd29d40c76eb72b307269b126",
@@ -211,7 +226,7 @@
                 "sha256:d234b871b52271ae7ed6d9da47ffe857c76568f11dd30e28e18c5869dbd11e12",
                 "sha256:d963ef25639d1417e8a247be36e6aedd8c7c6f0a08adcb5a89146980a96b577c"
             ],
-            "markers": "python_version >= '3.5' and python_version < '4.0'",
+            "markers": "python_version >= '3.5' and python_version < '4'",
             "version": "==5.3.0"
         },
         "wrapt": {

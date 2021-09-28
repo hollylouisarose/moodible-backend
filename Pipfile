@@ -17,5 +17,6 @@ dj-database-url = "*"
 django-on-heroku = "*"
 django-cors-headers = "*"
 
+
 [requires]
 python_version = "3.8"
