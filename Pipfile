@@ -3,17 +3,19 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[dev-packages]
+
 [packages]
 django = "*"
 pylint = "*"
 psycopg2-binary = "*"
 djangorestframework = "*"
+djangorestframework-camel-case = "*"
+pyjwt = "*"
 python-dotenv = "*"
 dj-database-url = "*"
 django-on-heroku = "*"
 django-cors-headers = "*"
-
-[dev-packages]
 
 [requires]
 python_version = "3.8"
