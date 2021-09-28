@@ -77,7 +77,7 @@ DATABASES = {}
 if str(os.getenv('ENVIRONMENT')) == 'development':
     DATABASES['default'] =  {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'moodible-django-db', 
+        'NAME': 'moodible-django-db',
         'HOST': 'localhost',
         'PORT': 5432
     }
