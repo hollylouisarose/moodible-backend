@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 if str(os.getenv('ENVIRONMENT')) == 'development':
-    SECRET_KEY = 'django-insecure-qs%!beo@vifoana=9dsscn*!&ns51^)_^j)vltxf6)f@go0#(j' 
+    SECRET_KEY = 'django-insecure-qs%!beo@vifoana=9dsscn*!&ns51^)_^j)vltxf6)f@go0#(j'
 else:
     SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
@@ -49,7 +49,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 
 CORS_ALLOW_ALL_ORIGINS=True
 
