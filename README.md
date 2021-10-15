@@ -2,6 +2,19 @@
 
 A solo coding project by Holly Stratton (7 days) 
 
+Technologies used:
+* JavaScript (ES6)
+* Python
+* HTML5
+* Django
+* React.js
+* React Router
+* React Spring
+* SCSS
+* Bulma (CSS Framework)
+* Axios
+* npm
+
 ## Deployment 
 
 This project was deployed using Netlify and Heroku and can be [found here.](https://moodible-app.netlify.app/)
