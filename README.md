@@ -31,7 +31,7 @@ Moodible is my attempt to prototype a one stop shop for cultivated inspiration.
 
 ### App walk through
 
-![gif of moodible functionality](src/images/moodible.gif)
+![gif of moodible functionality](readmeimages/moodible.gif)
 
 ## Approach
 
@@ -41,7 +41,7 @@ In the planning phase, I realised Moodible presented several coding challenges:
 * Liking and unliking images.
 * User permissions, ensuring the user's profile is not visible to other users.
 
-![Database diagram](src/images/moodibledatabase.png)
+![Database diagram](readmeimages/moodibledatabase.png)
 
 I started by mapping out my database models. Moodible required a mixture of one to many and many to many relationships:
 Initially, I thought the many to many relationships were:
@@ -54,7 +54,7 @@ Having established my database relationships and models, I set about putting tog
 
 On a previous project, I had encountered challenges performing image liking, so I experimented with writing some pseudocode to help myself.
 
-![image liking pseudocode](src/images/pseudocodemoodible.png)
+![image liking pseudocode](readmeimages/pseudocodemoodible.png)
 
 ## The Build
 
@@ -141,7 +141,7 @@ Although not the most complex code, this aspect of my project was a great opport
 
 ### Liking and unliking images, without having to visit an image show page.
 
-![Image of user profile](src/images/profile.png)
+![Image of user profile](readmeimages/profile.png)
 
 I wanted the user to be able to like and unlike images and view their liked images on their private user profile.
 
